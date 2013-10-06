@@ -118,7 +118,8 @@ public class RandomNumberGeneratorProxy implements IRandomNumberGenerator {
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
 
             for (RandNumber number : randNumbers) {
-                builder.addTextBody("", randomNumberSerializer.serializeRandomNumber(number));
+                builder.addTextBody(number.getUuid(),
+                        randomNumberSerializer.serializeRandomNumber(number));
             }
 
             httpPost.setEntity(builder.build());
